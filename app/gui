@@ -1,0 +1,317 @@
+import customtkinter as ctk
+import tkinter as tk
+from tkinter import ttk
+import threading
+import time
+
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("blue")
+
+
+class LeadHunterApp(ctk.CTk):
+
+    def __init__(self):
+        super().__init__()
+
+        self.title("LeadHunter Enterprise v0.1")
+        self.geometry("1400x800")
+        self.minsize(1200,700)
+
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+        self.criar_menu()
+        self.criar_area_principal()
+
+    # --------------------------------------------------------
+
+    def criar_menu(self):
+
+        self.menu = ctk.CTkFrame(self, width=220, corner_radius=0)
+        self.menu.grid(row=0,column=0,sticky="ns")
+
+        self.menu.grid_rowconfigure(20, weight=1)
+
+        titulo = ctk.CTkLabel(
+            self.menu,
+            text="LeadHunter",
+            font=("Segoe UI",24,"bold")
+        )
+
+        titulo.pack(pady=(20,5))
+
+        subtitulo = ctk.CTkLabel(
+            self.menu,
+            text="Enterprise",
+            font=("Segoe UI",14)
+        )
+
+        subtitulo.pack(pady=(0,30))
+
+        botoes = [
+            "Dashboard",
+            "Google Maps",
+            "Histórico",
+            "Exportações",
+            "Configurações"
+        ]
+
+        for nome in botoes:
+
+            btn = ctk.CTkButton(
+                self.menu,
+                text=nome,
+                height=42
+            )
+
+            btn.pack(fill="x", padx=15, pady=6)
+
+    # --------------------------------------------------------
+
+    def criar_area_principal(self):
+
+        self.main = ctk.CTkFrame(self)
+        self.main.grid(row=0,column=1,sticky="nsew",padx=10,pady=10)
+
+        self.main.grid_columnconfigure(0,weight=1)
+        self.main.grid_rowconfigure(4,weight=1)
+
+        titulo = ctk.CTkLabel(
+            self.main,
+            text="Pesquisa Google Maps",
+            font=("Segoe UI",24,"bold")
+        )
+
+        titulo.grid(row=0,column=0,sticky="w",padx=20,pady=20)
+
+        filtros = ctk.CTkFrame(self.main)
+        filtros.grid(row=1,column=0,sticky="ew",padx=20)
+
+        filtros.grid_columnconfigure((0,1,2,3),weight=1)
+
+        self.entry_categoria = ctk.CTkEntry(
+            filtros,
+            placeholder_text="Categoria (Ex.: Açai)"
+        )
+
+        self.entry_categoria.grid(row=0,column=0,padx=10,pady=15,sticky="ew")
+
+        self.entry_cidade = ctk.CTkEntry(
+            filtros,
+            placeholder_text="Cidade"
+        )
+
+        self.entry_cidade.grid(row=0,column=1,padx=10,pady=15,sticky="ew")
+
+        self.entry_qtd = ctk.CTkEntry(
+            filtros,
+            placeholder_text="Quantidade"
+        )
+
+        self.entry_qtd.insert(0,"50")
+
+        self.entry_qtd.grid(row=0,column=2,padx=10,pady=15,sticky="ew")
+
+        self.btn_buscar = ctk.CTkButton(
+            filtros,
+            text="▶ Iniciar Busca",
+            command=self.iniciar_busca
+        )
+
+        self.btn_buscar.grid(row=0,column=3,padx=10,pady=15)
+
+        # ----------------------
+
+        self.progress = ctk.CTkProgressBar(self.main)
+
+        self.progress.grid(row=2,column=0,sticky="ew",padx=20,pady=15)
+
+        self.progress.set(0)
+
+        # ----------------------
+
+        painel = ctk.CTkFrame(self.main)
+
+        painel.grid(row=3,column=0,sticky="ew",padx=20)
+
+        painel.grid_columnconfigure((0,1),weight=1)
+
+        # LOG
+
+        frame_log = ctk.CTkFrame(painel)
+
+        frame_log.grid(row=0,column=0,sticky="nsew",padx=(0,10))
+
+        lbl = ctk.CTkLabel(
+            frame_log,
+            text="Logs"
+        )
+
+        lbl.pack(anchor="w",padx=10,pady=10)
+
+        self.log = tk.Text(
+            frame_log,
+            height=10,
+            bg="#1f1f1f",
+            fg="white",
+            insertbackground="white"
+        )
+
+        self.log.pack(fill="both",expand=True,padx=10,pady=(0,10))
+
+        # ESTATÍSTICAS
+
+        frame_info = ctk.CTkFrame(painel)
+
+        frame_info.grid(row=0,column=1,sticky="nsew")
+
+        self.lbl_total = ctk.CTkLabel(
+            frame_info,
+            text="Empresas encontradas: 0",
+            font=("Segoe UI",18)
+        )
+
+        self.lbl_total.pack(anchor="w",padx=20,pady=20)
+
+        self.lbl_tel = ctk.CTkLabel(
+            frame_info,
+            text="Telefones: 0",
+            font=("Segoe UI",18)
+        )
+
+        self.lbl_tel.pack(anchor="w",padx=20,pady=10)
+
+        self.lbl_site = ctk.CTkLabel(
+            frame_info,
+            text="Websites: 0",
+            font=("Segoe UI",18)
+        )
+
+        self.lbl_site.pack(anchor="w",padx=20,pady=10)
+
+        # -------------------------
+
+        tabela_frame = ctk.CTkFrame(self.main)
+
+        tabela_frame.grid(row=4,column=0,sticky="nsew",padx=20,pady=20)
+
+        tabela_frame.grid_rowconfigure(0,weight=1)
+        tabela_frame.grid_columnconfigure(0,weight=1)
+
+        colunas = (
+            "Nome",
+            "Telefone",
+            "Website",
+            "Endereço"
+        )
+
+        self.tree = ttk.Treeview(
+            tabela_frame,
+            columns=colunas,
+            show="headings"
+        )
+
+        for coluna in colunas:
+
+            self.tree.heading(coluna,text=coluna)
+
+            self.tree.column(coluna,width=250)
+
+        scroll = ttk.Scrollbar(
+            tabela_frame,
+            orient="vertical",
+            command=self.tree.yview
+        )
+
+        self.tree.configure(yscrollcommand=scroll.set)
+
+        self.tree.grid(row=0,column=0,sticky="nsew")
+
+        scroll.grid(row=0,column=1,sticky="ns")
+
+    # ----------------------------------------------------
+
+    def escrever_log(self,texto):
+
+        self.log.insert("end",texto+"\n")
+
+        self.log.see("end")
+
+        self.update_idletasks()
+
+    # ----------------------------------------------------
+
+    def iniciar_busca(self):
+
+        self.btn_buscar.configure(state="disabled")
+
+        threading.Thread(
+            target=self.executar_busca,
+            daemon=True
+        ).start()
+
+    # ----------------------------------------------------
+
+    def executar_busca(self):
+
+        categoria = self.entry_categoria.get()
+
+        cidade = self.entry_cidade.get()
+
+        qtd = self.entry_qtd.get()
+
+        self.escrever_log("===================================")
+        self.escrever_log("LeadHunter Enterprise")
+        self.escrever_log("")
+
+        self.escrever_log(f"Categoria : {categoria}")
+        self.escrever_log(f"Cidade    : {cidade}")
+        self.escrever_log(f"Quantidade: {qtd}")
+
+        self.escrever_log("")
+        self.escrever_log("Iniciando busca...")
+
+        self.tree.delete(*self.tree.get_children())
+
+        total = int(qtd)
+
+        for i in range(total):
+
+            progresso = (i+1)/total
+
+            self.progress.set(progresso)
+
+            nome = f"Empresa {i+1}"
+
+            telefone = "(41)99999-9999"
+
+            site = "www.site.com.br"
+
+            endereco = "Curitiba"
+
+            self.tree.insert(
+                "",
+                "end",
+                values=(
+                    nome,
+                    telefone,
+                    site,
+                    endereco
+                )
+            )
+
+            self.lbl_total.configure(
+                text=f"Empresas encontradas: {i+1}"
+            )
+
+            self.escrever_log(
+                f"Extraindo {nome}"
+            )
+
+            time.sleep(0.05)
+
+        self.escrever_log("")
+        self.escrever_log("Busca finalizada.")
+
+        self.btn_buscar.configure(state="normal")
