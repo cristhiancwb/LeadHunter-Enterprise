@@ -1,0 +1,693 @@
+/* =====================================
+   RESET GLOBAL
+===================================== */
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#f4f6f9;
+
+    color:#1f2937;
+
+}
+
+
+
+button {
+
+    cursor:pointer;
+
+}
+
+
+
+/* =====================================
+   HEADER APP
+===================================== */
+
+
+.app-header {
+
+    padding:25px 30px;
+
+    background:white;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.08);
+
+}
+
+
+
+.app-header h1 {
+
+    font-size:28px;
+
+}
+
+
+
+.app-header p {
+
+    margin-top:5px;
+
+    color:#6b7280;
+
+}
+
+
+
+
+
+/* =====================================
+   MENU PRINCIPAL
+===================================== */
+
+
+.app-menu {
+
+    display:flex;
+
+    gap:15px;
+
+    padding:15px 30px;
+
+    background:#111827;
+
+}
+
+
+
+.app-menu button {
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#374151;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+
+
+.app-menu button:hover {
+
+    opacity:.85;
+
+}
+
+
+
+.menu-active {
+
+    background:#2563eb !important;
+
+}
+
+
+
+
+
+/* =====================================
+   LAYOUT
+===================================== */
+
+
+.dashboard {
+
+    padding:30px;
+
+}
+
+
+
+
+
+/* =====================================
+   DASHBOARD CARDS
+===================================== */
+
+
+.cards {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.card {
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:
+
+        0 4px 12px rgba(0,0,0,.08);
+
+}
+
+
+
+.card h3 {
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+
+
+.card strong {
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:30px;
+
+}
+
+
+
+
+
+/* =====================================
+   PIPELINE KANBAN
+===================================== */
+
+
+.kanban {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:15px;
+
+    margin-top:30px;
+
+    overflow-x:auto;
+
+}
+
+
+
+.kanban-column {
+
+    min-width:220px;
+
+    background:#f9fafb;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    min-height:350px;
+
+}
+
+
+
+.kanban-column h3 {
+
+    margin-bottom:15px;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+.kanban-card {
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+
+        0 3px 10px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+
+.kanban-card:hover {
+
+    transform:translateY(-3px);
+
+}
+
+
+
+
+
+.kanban-card h4 {
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+/* =====================================
+   CRM TABELA
+===================================== */
+
+
+.table-container {
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    overflow-x:auto;
+
+}
+
+
+
+table {
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+th {
+
+    padding:12px;
+
+    text-align:left;
+
+}
+
+
+
+td {
+
+    padding:12px;
+
+    border-top:1px solid #eee;
+
+}
+
+
+
+
+
+/* =====================================
+   BADGES
+===================================== */
+
+
+.badge {
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+
+
+.alta {
+
+    background:#fee2e2;
+
+}
+
+
+
+.media {
+
+    background:#fef3c7;
+
+}
+
+
+
+.baixa {
+
+    background:#dcfce7;
+
+}
+
+
+
+
+
+/* =====================================
+   LEAD DETAILS
+===================================== */
+
+
+.lead-panel {
+
+    background:white;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    border-radius:18px;
+
+    box-shadow:
+
+        0 5px 15px rgba(0,0,0,.10);
+
+}
+
+
+
+.lead-panel-header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.lead-panel-header button {
+
+    border:none;
+
+    background:none;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.lead-info h3 {
+
+    font-size:26px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.lead-info p {
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+/* =====================================
+   WHATSAPP
+===================================== */
+
+
+.whatsapp-button {
+
+    background:#25d366;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* =====================================
+   MÉTRICAS LEAD
+===================================== */
+
+
+.lead-metrics {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.lead-metrics div {
+
+    background:#f3f4f6;
+
+    padding:18px;
+
+    border-radius:12px;
+
+}
+
+
+
+.lead-metrics strong {
+
+    display:block;
+
+    margin-top:8px;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+/* =====================================
+   STATUS SELECTOR
+===================================== */
+
+
+.status-selector {
+
+    background:#f9fafb;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.status-selector select {
+
+    width:100%;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:1px solid #ddd;
+
+}
+
+
+
+.status-selector button {
+
+    margin-top:15px;
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+/* =====================================
+   TIMELINE COMERCIAL
+===================================== */
+
+
+.timeline {
+
+    background:white;
+
+    padding:25px;
+
+    margin-top:25px;
+
+    border-radius:15px;
+
+}
+
+
+
+.timeline-item {
+
+    border-left:
+
+        3px solid #d1d5db;
+
+    padding-left:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.timeline-date {
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+
+
+.timeline-status {
+
+    margin-top:8px;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+/* =====================================
+   RESPONSIVO
+===================================== */
+
+
+@media(max-width:1200px){
+
+
+    .cards {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+    .dashboard {
+
+        padding:15px;
+
+    }
+
+
+    .cards,
+
+    .lead-metrics {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .app-menu {
+
+        flex-direction:column;
+
+    }
+
+
+}

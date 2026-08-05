@@ -1,0 +1,244 @@
+import { useState } from "react";
+
+
+import Dashboard from "./pages/Dashboard";
+
+import CRM from "./pages/CRM";
+
+import Pipeline from "./pages/Pipeline";
+
+
+
+function App() {
+
+
+    const [pagina, setPagina] = useState(
+        "dashboard"
+    );
+
+
+
+
+
+    function renderPagina() {
+
+
+        switch (pagina) {
+
+
+            case "dashboard":
+
+                return (
+
+                    <Dashboard />
+
+                );
+
+
+
+            case "crm":
+
+                return (
+
+                    <CRM />
+
+                );
+
+
+
+            case "pipeline":
+
+                return (
+
+                    <Pipeline />
+
+                );
+
+
+
+            default:
+
+                return (
+
+                    <Dashboard />
+
+                );
+
+        }
+
+    }
+
+
+
+
+
+
+
+    return (
+
+        <div className="app">
+
+
+            <header className="app-header">
+
+
+                <h1>
+
+                    🚀 LeadHunter Enterprise
+
+                </h1>
+
+
+                <p>
+
+                    Inteligência Comercial e Gestão de Leads
+
+                </p>
+
+
+            </header>
+
+
+
+
+
+
+
+            <nav className="app-menu">
+
+
+                <button
+
+                    className={
+
+                        pagina === "dashboard"
+
+                        ?
+
+                        "menu-active"
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    onClick={() =>
+
+                        setPagina("dashboard")
+
+                    }
+
+                >
+
+                    📊 Dashboard
+
+                </button>
+
+
+
+
+
+
+
+                <button
+
+                    className={
+
+                        pagina === "crm"
+
+                        ?
+
+                        "menu-active"
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    onClick={() =>
+
+                        setPagina("crm")
+
+                    }
+
+                >
+
+                    📋 CRM Comercial
+
+                </button>
+
+
+
+
+
+
+
+
+                <button
+
+                    className={
+
+                        pagina === "pipeline"
+
+                        ?
+
+                        "menu-active"
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    onClick={() =>
+
+                        setPagina("pipeline")
+
+                    }
+
+                >
+
+                    🚀 Pipeline Comercial
+
+                </button>
+
+
+
+            </nav>
+
+
+
+
+
+
+
+            <main className="app-content">
+
+
+                {
+
+                    renderPagina()
+
+                }
+
+
+            </main>
+
+
+
+
+
+        </div>
+
+    );
+
+}
+
+
+
+export default App;

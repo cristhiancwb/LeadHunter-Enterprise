@@ -1,0 +1,59 @@
+import "../../styles/cards.css";
+
+export default function StatsCards() {
+
+    const cards = [
+
+        {
+            titulo: "Total Leads",
+            valor: 31,
+            emoji: "👥"
+        },
+
+        {
+            titulo: "Prioridade",
+            valor: 6,
+            emoji: "⭐"
+        },
+
+        {
+            titulo: "Avaliação",
+            valor: 4.49,
+            emoji: "★"
+        },
+
+        {
+            titulo: "Melhor Score",
+            valor: 85,
+            emoji: "🏆"
+        }
+
+    ];
+
+    return (
+
+        <div className="cards-grid">
+
+            {cards.map(card => (
+
+                <div className="card" key={card.titulo}>
+
+                    <div className="emoji">
+
+                        {card.emoji}
+
+                    </div>
+
+                    <h3>{card.titulo}</h3>
+
+                    <h2>{card.valor}</h2>
+
+                </div>
+
+            ))}
+
+        </div>
+
+    );
+
+}

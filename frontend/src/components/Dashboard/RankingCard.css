@@ -1,0 +1,313 @@
+.ranking-card {
+
+    width:100%;
+
+}
+
+
+
+
+
+.ranking-list {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+
+
+
+.ranking-item {
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+
+    padding:16px;
+
+
+    border-radius:12px;
+
+
+    background:#f8fafc;
+
+
+    transition:.2s;
+
+
+}
+
+
+
+.ranking-item:hover {
+
+
+    transform:translateX(5px);
+
+
+}
+
+
+
+
+
+.ranking-position {
+
+
+    font-size:28px;
+
+    width:45px;
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.ranking-info {
+
+
+    flex:1;
+
+
+}
+
+
+
+.ranking-info h3 {
+
+
+    margin:0 0 6px;
+
+
+    font-size:17px;
+
+
+}
+
+
+
+.ranking-info p {
+
+
+    margin:4px 0;
+
+
+    font-size:13px;
+
+
+    color:#64748b;
+
+
+}
+
+
+
+
+
+
+
+.ranking-score {
+
+
+    min-width:160px;
+
+
+}
+
+
+
+
+
+.ranking-score strong {
+
+
+    display:block;
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+
+
+
+.score-bar {
+
+
+    width:100%;
+
+
+    height:8px;
+
+
+    background:#e2e8f0;
+
+
+    border-radius:10px;
+
+
+    overflow:hidden;
+
+
+    margin:8px 0;
+
+
+}
+
+
+
+
+
+.score-bar span {
+
+
+    display:block;
+
+
+    height:100%;
+
+
+    background:#2563eb;
+
+
+    border-radius:10px;
+
+
+}
+
+
+
+
+
+
+
+
+.prioridade {
+
+
+    display:inline-block;
+
+
+    padding:4px 10px;
+
+
+    border-radius:20px;
+
+
+    font-size:12px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.prioridade-alta {
+
+
+    background:#fee2e2;
+
+
+    color:#b91c1c;
+
+
+}
+
+
+
+.prioridade-media {
+
+
+    background:#fef3c7;
+
+
+    color:#92400e;
+
+
+}
+
+
+
+.prioridade-baixa {
+
+
+    background:#dcfce7;
+
+
+    color:#166534;
+
+
+}
+
+
+
+
+
+.ranking-score small {
+
+
+    display:block;
+
+
+    margin-top:6px;
+
+
+    color:#64748b;
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:768px){
+
+
+
+    .ranking-item {
+
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+
+    }
+
+
+
+    .ranking-score {
+
+
+        width:100%;
+
+
+    }
+
+
+}

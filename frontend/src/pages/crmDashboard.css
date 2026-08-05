@@ -1,0 +1,90 @@
+.crm-dashboard{
+
+    padding:25px;
+
+}
+
+
+.crm-dashboard h1{
+
+    margin-bottom:25px;
+
+}
+
+
+
+.crm-cards{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.crm-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 20px #0002;
+
+}
+
+
+.crm-card span{
+
+    display:block;
+
+    color:#777;
+
+}
+
+
+.crm-card strong{
+
+    font-size:32px;
+
+}
+
+
+
+
+
+
+.crm-panel{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+}
+
+
+
+
+
+
+.crm-followup{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:15px;
+
+    border-bottom:1px solid #ddd;
+
+}

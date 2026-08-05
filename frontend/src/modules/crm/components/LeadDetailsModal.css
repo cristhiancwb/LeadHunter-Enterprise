@@ -1,0 +1,236 @@
+.modal-overlay {
+
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+
+
+}
+
+
+
+
+.lead-modal {
+
+
+    width:500px;
+
+    max-width:90%;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.2);
+
+
+
+}
+
+
+
+
+
+.modal-header {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+
+
+}
+
+
+
+.modal-header h2 {
+
+
+    margin:0;
+
+}
+
+
+
+
+
+.modal-header button {
+
+
+    border:none;
+
+    background:none;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+.lead-info {
+
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+
+
+}
+
+
+
+
+.lead-info div {
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+
+}
+
+
+
+
+.status-badge {
+
+
+    color:#2563eb;
+
+    font-weight:700;
+
+
+}
+
+
+
+.priority-badge {
+
+
+    color:#dc2626;
+
+    font-weight:700;
+
+
+}
+
+
+
+.score-value {
+
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#16a34a;
+
+
+}
+
+
+
+
+.lead-observacao {
+
+
+    margin-top:25px;
+
+    background:#f9fafb;
+
+    padding:15px;
+
+    border-radius:12px;
+
+
+}
+
+
+
+
+.modal-actions {
+
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:12px;
+
+
+}
+
+
+
+.whatsapp-btn {
+
+
+    flex:1;
+
+    background:#22c55e;
+
+    color:white;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+
+}
+
+
+
+.close-btn {
+
+
+    flex:1;
+
+    background:#e5e7eb;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+
+}

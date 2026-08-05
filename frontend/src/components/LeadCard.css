@@ -1,0 +1,48 @@
+.crm-lead-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.crm-lead-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.crm-lead-card__title,
+.crm-lead-card__info span,
+.crm-lead-card__footer span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.crm-lead-card__title strong {
+    color: #0f172a;
+    font-size: 18px;
+    overflow-wrap: anywhere;
+}
+
+.crm-lead-card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #475569;
+}
+
+.crm-lead-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #475569;
+    font-size: 14px;
+}

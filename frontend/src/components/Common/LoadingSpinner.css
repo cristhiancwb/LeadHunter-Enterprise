@@ -1,0 +1,121 @@
+.loading-spinner{
+
+    width:100%;
+
+    min-height:180px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    padding:30px;
+
+}
+
+.spinner{
+
+    border-radius:50%;
+
+    border-style:solid;
+
+    animation:spinnerRotate .8s linear infinite;
+
+}
+
+
+
+/* ============================
+   SMALL
+============================ */
+
+.spinner-small{
+
+    width:26px;
+
+    height:26px;
+
+    border-width:3px;
+
+    border-color:#E5E7EB;
+
+    border-top-color:#2563EB;
+
+}
+
+
+
+/* ============================
+   MEDIUM
+============================ */
+
+.spinner-medium{
+
+    width:48px;
+
+    height:48px;
+
+    border-width:5px;
+
+    border-color:#E5E7EB;
+
+    border-top-color:#2563EB;
+
+}
+
+
+
+/* ============================
+   LARGE
+============================ */
+
+.spinner-large{
+
+    width:72px;
+
+    height:72px;
+
+    border-width:6px;
+
+    border-color:#E5E7EB;
+
+    border-top-color:#2563EB;
+
+}
+
+
+
+.loading-message{
+
+    font-size:15px;
+
+    color:#6B7280;
+
+    font-weight:500;
+
+    text-align:center;
+
+}
+
+
+
+@keyframes spinnerRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}

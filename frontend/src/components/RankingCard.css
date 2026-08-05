@@ -1,0 +1,56 @@
+.ranking-card {
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+}
+
+
+.ranking-position {
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+
+.ranking-company {
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin:10px 0;
+
+}
+
+
+.ranking-info {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+    color:#6b7280;
+
+}
+
+
+.ranking-score {
+
+    margin-top:15px;
+
+    font-size:32px;
+
+    font-weight:800;
+
+}

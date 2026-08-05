@@ -1,0 +1,93 @@
+.lead-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    display: flex;
+
+    gap: 10px;
+
+    transition: 0.2s;
+
+}
+
+
+
+.lead-card.dragging {
+
+    opacity: 0.7;
+
+    transform: rotate(2deg);
+
+}
+
+
+
+
+
+.lead-card-handle {
+
+    cursor: grab;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #64748b;
+
+    font-size: 18px;
+
+    width: 25px;
+
+}
+
+
+
+.lead-card-handle:active {
+
+    cursor: grabbing;
+
+}
+
+
+
+
+
+.lead-card-content {
+
+    flex: 1;
+
+    cursor: pointer;
+
+}
+
+
+
+.lead-card-content h4 {
+
+    margin: 0 0 8px 0;
+
+    font-size: 16px;
+
+}
+
+
+
+.lead-card-content p {
+
+    margin: 4px 0;
+
+    font-size: 13px;
+
+    color: #475569;
+
+}

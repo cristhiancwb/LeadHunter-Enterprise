@@ -1,0 +1,133 @@
+.followup-panel{
+
+    margin-top:25px;
+
+}
+
+
+
+.followup-title{
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.followup-create{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+
+
+.followup-create textarea{
+
+    flex:1;
+
+    min-height:70px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:1px solid #ddd;
+
+}
+
+
+
+.followup-create button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    height:40px;
+
+    padding:0 15px;
+
+    cursor:pointer;
+
+}
+
+
+
+.followup-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    background:#f8fafc;
+
+    padding:12px;
+
+    margin-top:10px;
+
+    border-radius:10px;
+
+}
+
+
+
+.followup-actions{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+
+
+.followup-actions button{
+
+    cursor:pointer;
+
+}
+
+
+
+.empty{
+
+    text-align:center;
+
+    padding:20px;
+
+    color:#64748b;
+
+}
+
+.followup-create button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+.followup-error{
+
+    margin:10px 0 0;
+
+    color:#b91c1c;
+
+    font-size:14px;
+
+}

@@ -1,0 +1,149 @@
+.followup-list {
+
+    margin-top: 20px;
+
+}
+
+
+
+.followup-item {
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+
+.followup-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+
+.followup-date {
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+
+.followup-description {
+
+    font-size: 14px;
+
+    color: #1e293b;
+
+}
+
+
+
+.followup-actions {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+
+.followup-actions button {
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+}
+
+
+
+.complete-btn {
+
+    background: #16a34a;
+
+    color: white;
+
+}
+
+
+
+.delete-btn {
+
+    background: #dc2626;
+
+    color: white;
+
+}
+
+
+
+.empty-followups {
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: #64748b;
+
+}
+
+
+
+@media(max-width:700px) {
+
+
+    .followup-item {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .followup-actions {
+
+        width: 100%;
+
+    }
+
+
+    .followup-actions button {
+
+        flex: 1;
+
+    }
+
+
+}

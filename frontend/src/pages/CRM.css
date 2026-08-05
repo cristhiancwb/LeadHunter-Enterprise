@@ -1,0 +1,82 @@
+.crm-page {
+
+    padding: 30px;
+
+    min-height: 100vh;
+
+    background: #f8fafc;
+
+}
+
+
+
+
+
+.crm-page h1 {
+
+    margin:0;
+
+    font-size:32px;
+
+    color:#0f172a;
+
+}
+
+
+
+
+
+.crm-page p {
+
+    color:#64748b;
+
+}
+
+
+
+
+
+.crm-grid {
+
+    margin-top:30px;
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(
+
+            auto-fill,
+
+            minmax(280px, 1fr)
+
+        );
+
+    gap:20px;
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .crm-page {
+
+        padding:15px;
+
+    }
+
+
+    .crm-grid {
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+}
