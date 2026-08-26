@@ -1,7 +1,16 @@
+﻿from pathlib import Path
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-DATABASE_URL = "sqlite:///./leadhunter.db"
+
+# Banco OFICIAL da aplicacao.
+# O caminho e absoluto para evitar que o banco dependa
+# da pasta de onde o processo foi iniciado.
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATABASE_PATH = BASE_DIR / "leadhunter_clean.db"
+
+DATABASE_URL = f"sqlite:///{DATABASE_PATH.as_posix()}"
 
 engine = create_engine(
     DATABASE_URL,

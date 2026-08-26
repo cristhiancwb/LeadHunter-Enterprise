@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+﻿from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, Field
 
 from app.services.job_service import buscar_job_por_id, criar_job
@@ -9,6 +9,7 @@ router = APIRouter(tags=["Jobs"])
 class GoogleMapsJobRequest(BaseModel):
     keyword: str = Field(min_length=2, max_length=120)
     cidade: str = Field(min_length=2, max_length=120)
+    quantidade: int = Field(default=20, ge=1, le=500)
 
 
 def serializar_job(job):
@@ -27,7 +28,7 @@ def serializar_job(job):
 
 @router.post("/google-maps", status_code=status.HTTP_202_ACCEPTED)
 def iniciar_google_maps(dados: GoogleMapsJobRequest):
-    job = criar_job("GOOGLE_MAPS", f"{dados.keyword.strip()}|{dados.cidade.strip()}")
+    job = criar_job("GOOGLE_MAPS", f"{dados.keyword.strip()}|{dados.cidade.strip()}|{dados.quantidade}")
     return serializar_job(job)
 
 
@@ -35,5 +36,6 @@ def iniciar_google_maps(dados: GoogleMapsJobRequest):
 def status_job(job_id: int):
     job = buscar_job_por_id(job_id)
     if not job:
-        raise HTTPException(status_code=404, detail="Job não encontrado")
+        raise HTTPException(status_code=404, detail="Job nÃ£o encontrado")
     return serializar_job(job)
+

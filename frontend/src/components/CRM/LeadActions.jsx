@@ -1,3 +1,5 @@
+﻿import "./LeadActions.css";
+
 import {
     Phone,
     MessageCircle,
@@ -29,14 +31,26 @@ export default function LeadActions({
 
     function abrirWhatsApp(){
 
-
         if(!lead.telefone){
-
 
             return;
 
-
         }
+
+        const numero = String(lead.telefone)
+            .replace(/\D/g, "");
+
+        const numeroWhatsApp = numero.startsWith("55")
+            ? numero
+            : `55${numero}`;
+
+        window.open(
+            `https://wa.me/${numeroWhatsApp}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    }
 
 
 
@@ -224,7 +238,7 @@ export default function LeadActions({
                 <FileText size={18}/>
 
 
-                Observação
+                ObservaÃ§Ã£o
 
 
             </button>
@@ -242,3 +256,4 @@ export default function LeadActions({
 
 
 }
+

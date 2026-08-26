@@ -1,4 +1,4 @@
-.pipeline-container {
+﻿.pipeline-container {
 
     padding: 24px;
 
@@ -282,3 +282,107 @@
 
 
 }
+
+/* ============================================================
+   LEADHUNTER - AJUSTE FINAL DO BOARD
+   6 COLUNAS VISIVEIS NA LARGURA DISPONIVEL
+   ============================================================ */
+
+.pipeline {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+.pipeline-board {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr)) !important;
+
+    gap: 12px !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
+
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+
+    padding: 4px 0 18px !important;
+}
+
+.pipeline-column {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    box-sizing: border-box !important;
+
+    overflow: visible !important;
+}
+
+.pipeline-column-header {
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.pipeline-column-title {
+    min-width: 0 !important;
+}
+
+.pipeline-column-title span:first-child {
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+}
+
+.pipeline-column-dropzone {
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.lead-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 1200px) {
+
+    .pipeline-board {
+        grid-template-columns:
+            repeat(6, minmax(0, 1fr)) !important;
+
+        gap: 8px !important;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .pipeline-board {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+
+        overflow-x: hidden !important;
+
+        gap: 10px !important;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .pipeline-board {
+        grid-template-columns:
+            1fr !important;
+    }
+
+}
+

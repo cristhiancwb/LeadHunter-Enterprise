@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String
-from app.db.database import Base
+﻿from sqlalchemy import Column, Integer, String
+from app.database.database import Base
 
 
 class User(Base):
@@ -32,3 +32,10 @@ class User(Base):
         String(255),
         nullable=False
     )
+    role = Column(
+        String(30),
+        nullable=False,
+        default="admin"
+    )
+
+

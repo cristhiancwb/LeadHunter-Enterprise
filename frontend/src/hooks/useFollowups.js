@@ -1,4 +1,4 @@
-import {
+﻿import {
     useState,
     useEffect,
     useCallback
@@ -149,9 +149,12 @@ export default function useFollowups(
 
                 {
 
-                    ...dados,
-
-                    lead_id: leadId
+                    lead_id: leadId,
+                    tipo: dados.tipo || "nota",
+                    titulo: dados.titulo || "Retorno comercial",
+                    descricao: dados.descricao || dados.observacao || "",
+                    observacao: dados.observacao || "",
+                    data_agendada: dados.data_agendada || dados.proximo_contato || null
 
                 }
 
@@ -197,6 +200,20 @@ export default function useFollowups(
 
 
 
+
+
+    async function cancelar(id){
+
+        const resposta =
+            await followupService.cancelarFollowup(
+                id
+            );
+
+        await carregarFollowups();
+
+        return resposta;
+
+    }
 
     async function remover(id){
 
@@ -247,6 +264,9 @@ export default function useFollowups(
         concluir,
 
 
+        cancelar,
+
+
         remover
 
 
@@ -254,3 +274,6 @@ export default function useFollowups(
 
 
 }
+
+
+

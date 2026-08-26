@@ -1,4 +1,4 @@
-import {
+﻿import {
     useEffect,
     useState
 } from "react";
@@ -25,7 +25,7 @@ import {
 
 import LeadTimeline from "./LeadTimeline.jsx";
 
-import FollowUpPanel from "./FollowUpPanel.jsx";
+import FollowUpPanel from "./FollowUpPanel/FollowUpPanel.jsx";
 
 
 import "./LeadModal.css";
@@ -232,7 +232,7 @@ function LeadModal({
                 error
             );
 
-            setErro("Não foi possível salvar as alterações. Tente novamente.");
+            setErro("NÃ£o foi possÃ­vel salvar as alteraÃ§Ãµes. Tente novamente.");
 
 
         }
@@ -531,7 +531,7 @@ function LeadModal({
 
                         <label>
 
-                            Observação
+                            ObservaÃ§Ã£o
 
 
                             <textarea
@@ -720,3 +720,4 @@ function LeadModal({
 
 
 export default LeadModal;
+

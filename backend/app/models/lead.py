@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 
 from sqlalchemy import (
     Column,
@@ -146,3 +146,23 @@ class Lead(Base):
         back_populates="lead",
         cascade="all, delete-orphan"
     )
+    pipeline_history = relationship(
+        "PipelineHistory",
+        back_populates="lead",
+        cascade="all, delete-orphan"
+    )
+
+
+    activities = relationship(
+        "LeadActivity",
+        back_populates="lead",
+        cascade="all, delete-orphan"
+    )
+
+
+    messages = relationship(
+        "LeadMessage",
+        back_populates="lead",
+        cascade="all, delete-orphan"
+    )
+

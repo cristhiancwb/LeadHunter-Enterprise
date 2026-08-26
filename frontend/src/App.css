@@ -1,244 +1,537 @@
-import { useState } from "react";
-
-
-import Dashboard from "./pages/Dashboard";
-
-import CRM from "./pages/CRM";
-
-import Pipeline from "./pages/Pipeline";
-
-
-
-function App() {
-
-
-    const [pagina, setPagina] = useState(
-        "dashboard"
-    );
-
-
-
-
-
-    function renderPagina() {
-
-
-        switch (pagina) {
-
-
-            case "dashboard":
-
-                return (
-
-                    <Dashboard />
-
-                );
-
-
-
-            case "crm":
-
-                return (
-
-                    <CRM />
-
-                );
-
-
-
-            case "pipeline":
-
-                return (
-
-                    <Pipeline />
-
-                );
-
-
-
-            default:
-
-                return (
-
-                    <Dashboard />
-
-                );
-
-        }
-
-    }
-
-
-
-
-
-
-
-    return (
-
-        <div className="app">
-
-
-            <header className="app-header">
-
-
-                <h1>
-
-                    🚀 LeadHunter Enterprise
-
-                </h1>
-
-
-                <p>
-
-                    Inteligência Comercial e Gestão de Leads
-
-                </p>
-
-
-            </header>
-
-
-
-
-
-
-
-            <nav className="app-menu">
-
-
-                <button
-
-                    className={
-
-                        pagina === "dashboard"
-
-                        ?
-
-                        "menu-active"
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    onClick={() =>
-
-                        setPagina("dashboard")
-
-                    }
-
-                >
-
-                    📊 Dashboard
-
-                </button>
-
-
-
-
-
-
-
-                <button
-
-                    className={
-
-                        pagina === "crm"
-
-                        ?
-
-                        "menu-active"
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    onClick={() =>
-
-                        setPagina("crm")
-
-                    }
-
-                >
-
-                    📋 CRM Comercial
-
-                </button>
-
-
-
-
-
-
-
-
-                <button
-
-                    className={
-
-                        pagina === "pipeline"
-
-                        ?
-
-                        "menu-active"
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    onClick={() =>
-
-                        setPagina("pipeline")
-
-                    }
-
-                >
-
-                    🚀 Pipeline Comercial
-
-                </button>
-
-
-
-            </nav>
-
-
-
-
-
-
-
-            <main className="app-content">
-
-
-                {
-
-                    renderPagina()
-
-                }
-
-
-            </main>
-
-
-
-
-
-        </div>
-
-    );
-
+/* ============================================================
+   LeadHunter Enterprise — App.css (Layout Principal)
+   ============================================================ */
+
+:root {
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #1a1a2e;
+    --bg-card: #16162a;
+    --bg-hover: #252545;
+    --accent-primary: #6366f1;
+    --accent-secondary: #8b5cf6;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: rgba(99, 102, 241, 0.15);
+    --sidebar-width: 260px;
+    --sidebar-collapsed: 72px;
+    --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.1);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
 
-export default App;
+/* ============================================================
+   APP LAYOUT
+   ============================================================ */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed);
+}
+
+.sidebar-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    min-height: 72px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow: hidden;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-gradient);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.logo-title {
+    font-size: 18px;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.logo-subtitle {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sidebar-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Nav */
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: var(--bg-hover);
+    border-radius: 2px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: var(--accent-gradient);
+    color: white;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.nav-label {
+    flex: 1;
+    transition: opacity 0.2s ease;
+}
+
+.nav-indicator {
+    opacity: 0.7;
+}
+
+/* Footer */
+.sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--accent-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.user-role {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.logout-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+}
+
+.main-content.expanded {
+    margin-left: var(--sidebar-collapsed);
+}
+
+/* Overlay para mobile */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================================
+   PAGE CONTAINER (para placeholders)
+   ============================================================ */
+.page-container {
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.page-header p {
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.page-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 48px 32px;
+    text-align: center;
+}
+
+.page-placeholder {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.page-placeholder-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-hover);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: var(--sidebar-width) !important;
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(0);
+    }
+
+    .main-content,
+    .main-content.expanded {
+        margin-left: 0;
+    }
+
+    .sidebar-header {
+        padding: 16px;
+    }
+
+    .page-container {
+        padding: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+}
+
+/* Print */
+@media print {
+    .sidebar,
+    .sidebar-overlay,
+    .sidebar-toggle,
+    .logout-btn {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+
+/* ============================================================
+   LEADHUNTER - CRM REAL
+   Estilizacao exclusiva do CrmDashboard
+   ============================================================ */
+
+.crm-container {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 28px 30px 40px;
+    background: var(--lh-bg, #f8fafc);
+}
+
+.crm-header {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 24px 28px;
+    box-sizing: border-box;
+    background: var(--lh-surface, #ffffff);
+    border: 1px solid var(--lh-border-light, #e2e8f0);
+    border-radius: 16px;
+    box-shadow: var(--lh-shadow-sm, 0 2px 8px rgba(15, 23, 42, 0.06));
+}
+
+.crm-header h1 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.crm-header p {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.crm-dashboard-premium,
+.crm-followups,
+.crm-pipeline {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+}
+
+.crm-dashboard-premium {
+    min-width: 0;
+}
+
+.crm-followups {
+    min-width: 0;
+}
+
+.crm-pipeline {
+    min-width: 0;
+}
+
+.dashboard-loading {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    margin-bottom: 24px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    color: #64748b;
+}
+
+.error-message {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+@media (max-width: 900px) {
+    .crm-container {
+        padding: 20px;
+    }
+
+    .crm-header {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .crm-container {
+        padding: 14px;
+    }
+
+    .crm-header {
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .crm-header h1 {
+        font-size: 24px;
+    }
+
+    .crm-dashboard-premium,
+    .crm-followups,
+    .crm-pipeline {
+        margin-bottom: 18px;
+    }
+}
+

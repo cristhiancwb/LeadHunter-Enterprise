@@ -1,11 +1,11 @@
-// ======================================================
+﻿// ======================================================
 // LeadHunter Enterprise 6.0
 // Core HTTP Client
 // ======================================================
 
 const API_URL =
     import.meta.env.VITE_API_URL ||
-    "http://127.0.0.1:8000";
+    (import.meta.env.VITE_API_URL || "http://127.0.0.1:8000");
 
 
 // ======================================================
@@ -77,7 +77,7 @@ class ApiClient {
 
             throw new Error(
 
-                "Não foi possível conectar ao servidor."
+                "NÃ£o foi possÃ­vel conectar ao servidor."
 
             );
 
@@ -192,7 +192,7 @@ class ApiClient {
 
 
 // ======================================================
-// INSTÂNCIA GLOBAL
+// INSTÃ‚NCIA GLOBAL
 // ======================================================
 
 const api = new ApiClient(API_URL);

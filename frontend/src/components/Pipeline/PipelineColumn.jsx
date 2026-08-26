@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 import {
     Droppable
@@ -19,6 +19,7 @@ export default function PipelineColumn({
     leads = [],
 
     abrirLead,
+    onLeadClick,
 
     title,
 
@@ -151,7 +152,7 @@ export default function PipelineColumn({
 
                     <span>
 
-                        Score médio: {scoreMedio}
+                        Score mÃ©dio: {scoreMedio}
 
                     </span>
 
@@ -229,7 +230,9 @@ export default function PipelineColumn({
 
 
 
-                                            key={
+                                            
+                                            onClick={onLeadClick}
+key={
 
                                                 lead.id
 
@@ -307,3 +310,6 @@ export default function PipelineColumn({
 
 
 }
+
+
+

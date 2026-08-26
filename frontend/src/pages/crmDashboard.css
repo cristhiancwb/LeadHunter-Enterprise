@@ -1,4 +1,4 @@
-.crm-dashboard{
+﻿.crm-dashboard{
 
     padding:25px;
 
@@ -88,3 +88,39 @@
     border-bottom:1px solid #ddd;
 
 }
+/* ============================================================
+   CRM DASHBOARD - FILTROS
+   Ajuste visual controlado
+   ============================================================ */
+
+.crm-segmento-filtro {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.crm-segmento-filtro > label,
+.crm-filtro-campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.crm-segmento-filtro select,
+.crm-filtro-campo select {
+    min-width: 320px;
+    height: 52px;
+    padding: 0 38px 0 12px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.crm-filtro-campo {
+    display: flex;
+    flex-direction: column;
+}
+
+
+

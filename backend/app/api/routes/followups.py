@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
 
@@ -44,15 +44,29 @@ def criar_followup(
 
         lead_id=dados["lead_id"],
 
+        tipo=dados.get("tipo", "TAREFA"),
+
         titulo=dados["titulo"],
 
         descricao=dados.get("descricao"),
 
-        observacao=dados.get("observacao"),
+        responsavel=dados.get("responsavel"),
+
+        status=dados.get("status", "PENDENTE"),
+
+        concluido=dados.get("concluido", False),
 
         data_agendada=datetime.fromisoformat(
             dados["data_agendada"]
-        ) if dados.get("data_agendada") else None
+        ) if dados.get("data_agendada") else None,
+
+        data_conclusao=datetime.fromisoformat(
+            dados["data_conclusao"]
+        ) if dados.get("data_conclusao") else None,
+
+        usuario=dados.get("usuario"),
+
+        observacao=dados.get("observacao")
 
     )
 
@@ -78,15 +92,29 @@ def editar_followup(
     followup = db.query(Followup).get(id)
 
     if not followup:
-        raise HTTPException(404, "Follow-up não encontrado")
+        raise HTTPException(
+            404,
+            "Follow-up nao encontrado"
+        )
+
+    campos_datetime = {
+        "data_agendada",
+        "data_conclusao"
+    }
 
     for campo, valor in dados.items():
 
-        if campo == "data_agendada" and valor:
+        if campo in campos_datetime and valor:
 
             valor = datetime.fromisoformat(valor)
 
-        setattr(followup, campo, valor)
+        if hasattr(followup, campo):
+
+            setattr(
+                followup,
+                campo,
+                valor
+            )
 
     db.commit()
 
@@ -107,16 +135,22 @@ def concluir_followup(
     followup = db.query(Followup).get(id)
 
     if not followup:
-        raise HTTPException(404, "Follow-up não encontrado")
+        raise HTTPException(
+            404,
+            "Follow-up nao encontrado"
+        )
 
     followup.concluido = True
+
+    followup.status = "CONCLUIDO"
+
     followup.data_conclusao = datetime.utcnow()
 
     db.commit()
 
-    return {
-        "mensagem": "Follow-up concluído"
-    }
+    db.refresh(followup)
+
+    return followup
 
 
 @router.delete(
@@ -131,7 +165,10 @@ def excluir_followup(
     followup = db.query(Followup).get(id)
 
     if not followup:
-        raise HTTPException(404, "Follow-up não encontrado")
+        raise HTTPException(
+            404,
+            "Follow-up nao encontrado"
+        )
 
     db.delete(followup)
 

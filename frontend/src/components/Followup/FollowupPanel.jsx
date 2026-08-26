@@ -1,12 +1,10 @@
-import {
+﻿import {
     useEffect,
     useState
 } from "react";
 
 
-import {
-    buscarFollowups
-} from "../../services/api.js";
+import api from "../../api/api.js";
 
 
 import "./FollowupPanel.css";
@@ -41,7 +39,7 @@ export default function FollowupPanel({
 
 
 
-            const dados = await buscarFollowups();
+            const dados = await api.get("/followups/");
 
 
 
@@ -358,3 +356,5 @@ export default function FollowupPanel({
 
 
 }
+
+

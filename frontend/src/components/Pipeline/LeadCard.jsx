@@ -1,330 +1,239 @@
-import {
-    Draggable
-} from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
+import {
+    Building2,
+    Mail,
+    Phone,
+    MapPin,
+    Target,
+    GripVertical,
+    TrendingUp,
+} from "lucide-react";
 
 import "./LeadCard.css";
 
-
-
-
-
 export default function LeadCard({
-
-
     lead,
-
     index,
-
-    abrirLead
-
-
+    isMoving = false,
+    onClick,
 }) {
+    if (!lead) {
+        return null;
+    }
 
+    const leadId = Number(lead.id);
 
-
-
-    function handleClick(e){
-
-
-
-        // evita abrir durante o drag
-
-        if(e.defaultPrevented){
-
-            return;
-
-        }
-
-
-
-
-
-        console.log(
-
-            "Lead selecionado:",
-
+    if (!Number.isInteger(leadId)) {
+        console.error(
+            "LeadCard.jsx: Lead com ID inválido:",
             lead
-
         );
 
-
-
-
-
-        if(abrirLead && lead){
-
-
-            abrirLead(lead);
-
-
-        }
-
-
-    }
-
-
-
-
-
-
-
-
-    if(!lead){
-
-
         return null;
-
-
     }
 
+    const nome =
+        lead.nome ||
+        "Lead sem nome";
 
+    const empresa =
+        lead.empresa ||
+        "Empresa não informada";
 
+    const email =
+        lead.email ||
+        "";
 
+    const telefone =
+        lead.telefone ||
+        "";
 
+    const cidade =
+        lead.cidade ||
+        "";
 
+    const score =
+        lead.score !== null &&
+        lead.score !== undefined
+            ? Number(lead.score)
+            : 0;
 
+    const prioridade =
+        String(
+            lead.prioridade ||
+            "MEDIA"
+        ).toUpperCase();
 
+    const status =
+        String(
+            lead.status ||
+            "NOVO"
+        ).toUpperCase();
+
+    const prioridadeClass =
+        prioridade.toLowerCase();
+
+    const scoreClass =
+        score >= 80
+            ? "high"
+            : score >= 50
+                ? "medium"
+                : "low";
+
+    function handleClick() {
+        console.log(
+            "LeadCard.jsx: Lead enviado para modal:",
+            lead
+        );
+
+        if (typeof onClick === "function") {
+            onClick(lead);
+        }
+    }
 
     return (
-
-
-
         <Draggable
-
-
-            draggableId={String(lead.id)}
-
-
+            draggableId={String(leadId)}
             index={index}
-
-
         >
-
-
-
-            {
-
-
-            (provided, snapshot)=>(
-
-
-
-                <div
-
-
-
+            {(provided, snapshot) => (
+                <article
                     ref={provided.innerRef}
-
-
-
                     {...provided.draggableProps}
-
-
-
-                    className={
-
-                        `pipeline-lead-card ${
-                            
-                            snapshot.isDragging
-
-                            ?
-
-                            "dragging"
-
-                            :
-
-                            ""
-
-                        }`
-
-                    }
-
-
-
-
-
+                    className={[
+                        "lead-card",
+                        snapshot.isDragging
+                            ? "is-dragging"
+                            : "",
+                        isMoving
+                            ? "is-moving"
+                            : "",
+                    ]
+                        .filter(Boolean)
+                        .join(" ")}
                     onClick={handleClick}
-
-
-
+                    style={{
+                        ...provided.draggableProps.style,
+                    }}
                 >
+                    {/* =================================================
+                        TOPO
+                    ================================================= */}
 
-
-
-
-
-
-
-                    <div
-
-
-                        className="pipeline-lead-card__handle"
-
-
-                        {...provided.dragHandleProps}
-
-
-                    >
-
-
-                        ☰
-
-
-                    </div>
-
-
-
-
-
-
-
-
-                    <div className="pipeline-lead-card__content">
-
-
-
-
-
-
-                        <div className="pipeline-lead-card__header">
-
-
-                            <h4>
-
-
-                                {lead.empresa || "Sem empresa"}
-
-
-                            </h4>
-
-
-
+                    <div className="lead-card-top">
+                        <div
+                            className="lead-card-drag"
+                            {...provided.dragHandleProps}
+                            onClick={(event) =>
+                                event.stopPropagation()
+                            }
+                            title="Arrastar lead"
+                        >
+                            <GripVertical size={17} />
                         </div>
 
-
-
-
-
-
-
-
-
-                        <div className="pipeline-lead-card__body">
-
-
-
-
-
-                            <p>
-
-
-                                📍 {lead.cidade || "-"}
-
-
-                            </p>
-
-
-
-
-
-
-                            <p>
-
-
-                                ⭐ Score:
-
-                                <strong>
-
-                                    {" "}
-
-                                    {lead.score ?? 0}
-
-                                </strong>
-
-
-                            </p>
-
-
-
-
-
-
-                            <p>
-
-
-                                🎯 Prioridade:
-
-                                <strong>
-
-                                    {" "}
-
-                                    {lead.prioridade || "-"}
-
-                                </strong>
-
-
-                            </p>
-
-
-
-
-
-
-
-                            <p>
-
-
-                                Status:
-
-                                <strong>
-
-                                    {" "}
-
-                                    {lead.status || "-"}
-
-                                </strong>
-
-
-                            </p>
-
-
-
-
-
-
+                        <div className="lead-card-identity">
+                            <strong className="lead-card-name">
+                                {nome}
+                            </strong>
+
+                            <div className="lead-card-company">
+                                <Building2 size={13} />
+
+                                <span>
+                                    {empresa}
+                                </span>
+                            </div>
                         </div>
 
+                        <div
+                            className={`lead-card-score score-${scoreClass}`}
+                            title={`Score: ${score}`}
+                        >
+                            <Target size={13} />
 
-
-
-
-
-
+                            <strong>
+                                {score}
+                            </strong>
+                        </div>
                     </div>
 
+                    {/* =================================================
+                        STATUS
+                    ================================================= */}
 
+                    <div className="lead-card-status">
+                        <span
+                            className={`lead-status-dot status-${status.toLowerCase()}`}
+                        />
 
+                        <span>
+                            {status.replace(
+                                /_/g,
+                                " "
+                            )}
+                        </span>
+                    </div>
 
+                    {/* =================================================
+                        INFORMAÇÕES
+                    ================================================= */}
 
+                    <div className="lead-card-info">
+                        {email && (
+                            <div className="lead-card-info-row">
+                                <Mail size={13} />
 
+                                <span title={email}>
+                                    {email}
+                                </span>
+                            </div>
+                        )}
 
-                </div>
+                        {telefone && (
+                            <div className="lead-card-info-row">
+                                <Phone size={13} />
 
+                                <span>
+                                    {telefone}
+                                </span>
+                            </div>
+                        )}
 
+                        {cidade && (
+                            <div className="lead-card-info-row">
+                                <MapPin size={13} />
 
-            )
+                                <span>
+                                    {cidade}
+                                </span>
+                            </div>
+                        )}
+                    </div>
 
+                    {/* =================================================
+                        RODAPÉ
+                    ================================================= */}
 
-            }
+                    <div className="lead-card-footer">
+                        <div
+                            className={`lead-card-priority priority-${prioridadeClass}`}
+                        >
+                            <TrendingUp size={12} />
 
+                            <span>
+                                {prioridade}
+                            </span>
+                        </div>
 
-
+                        <span className="lead-card-id">
+                            #{leadId}
+                        </span>
+                    </div>
+                </article>
+            )}
         </Draggable>
-
-
-
     );
-
-
 }
+

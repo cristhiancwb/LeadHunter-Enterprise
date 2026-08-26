@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+﻿from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.database.database import SessionLocal
@@ -13,11 +13,15 @@ router = APIRouter(
 
 
 class LeadUpdate(BaseModel):
-
+    nome: str | None = None
+    empresa: str | None = None
+    telefone: str | None = None
+    email: str | None = None
+    cidade: str | None = None
+    segmento: str | None = None
+    origem: str | None = None
     observacao: str | None = None
-
     status: str | None = None
-
 
 @router.get("/leads/{lead_id}")
 def buscar_lead(lead_id: int):
@@ -101,14 +105,31 @@ def atualizar_lead(
 
 
 
-        if dados.observacao is not None:
+        if dados.nome is not None:
+            lead.nome = dados.nome
 
+        if dados.empresa is not None:
+            lead.empresa = dados.empresa
+
+        if dados.telefone is not None:
+            lead.telefone = dados.telefone
+
+        if dados.email is not None:
+            lead.email = dados.email
+
+        if dados.cidade is not None:
+            lead.cidade = dados.cidade
+
+        if dados.segmento is not None:
+            lead.segmento = dados.segmento
+
+        if dados.origem is not None:
+            lead.origem = dados.origem
+
+        if dados.observacao is not None:
             lead.observacao = dados.observacao
 
-
-
         if dados.status is not None:
-
             lead.status = dados.status
 
 
@@ -149,3 +170,4 @@ def atualizar_lead(
 
 
         db.close()
+

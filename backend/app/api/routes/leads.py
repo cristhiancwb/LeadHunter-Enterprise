@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+﻿from fastapi import APIRouter, Depends
 
 from sqlalchemy.orm import Session
 
@@ -59,7 +59,6 @@ def listar_leads(
 
             "prioridade": lead.prioridade or "BAIXA",
 
-            "valor_estimado": lead.valor_estimado or 0
 
 
         }

@@ -1,60 +1,46 @@
-from datetime import datetime
+﻿from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-
-
-
-
-# =====================================
-# BASE
-# =====================================
 
 class FollowupBase(BaseModel):
 
+    tipo: str
     titulo: str
-
     descricao: str | None = None
-
-    observacao: str | None = None
-
+    responsavel: str | None = None
+    status: str
+    concluido: bool = False
     data_agendada: datetime | None = None
+    observacao: str | None = None
+    usuario: str | None = None
 
-
-
-
-
-# =====================================
-# CREATE
-# =====================================
 
 class FollowupCreate(FollowupBase):
 
     lead_id: int
 
 
+class FollowupUpdate(BaseModel):
 
+    tipo: str | None = None
+    titulo: str | None = None
+    descricao: str | None = None
+    responsavel: str | None = None
+    status: str | None = None
+    concluido: bool | None = None
+    data_agendada: datetime | None = None
+    data_conclusao: datetime | None = None
+    observacao: str | None = None
+    usuario: str | None = None
 
-
-# =====================================
-# RESPONSE
-# =====================================
 
 class FollowupResponse(FollowupBase):
 
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
-
     lead_id: int
-
-    concluido: bool
-
-    data_criacao: datetime
-
     data_conclusao: datetime | None = None
-
-
-
-
-    class Config:
-
-        from_attributes = True
+    criado_em: datetime
+    atualizado_em: datetime

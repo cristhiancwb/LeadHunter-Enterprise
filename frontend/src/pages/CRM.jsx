@@ -1,4 +1,4 @@
-import {
+﻿import {
     useEffect,
     useState
 } from "react";
@@ -61,6 +61,11 @@ function CRM(){
     ] = useState(true);
 
     const [pipelineRefresh, setPipelineRefresh] = useState(0);
+
+    const [segmentoSelecionado, setSegmentoSelecionado] = useState("");
+    const [cidadeSelecionada, setCidadeSelecionada] = useState("");
+    const [visaoSelecionada, setVisaoSelecionada] = useState("segmento");
+
 
 
 
@@ -129,6 +134,12 @@ function CRM(){
 
 
                     ...(dados.NOVO || []),
+
+                    ...(dados.EM_CONTATO || []),
+
+                    ...(dados.EM_NEGOCIACAO || []),
+
+                    ...(dados.CONVERTIDO || []),
 
 
                     ...(dados.CONTATO || []),
@@ -282,7 +293,7 @@ function CRM(){
 
             console.error(
 
-                "Lead inválido:",
+                "Lead invÃ¡lido:",
 
                 lead
 
@@ -336,6 +347,36 @@ function CRM(){
 
 
 
+
+    const segmentos = [...new Set(
+        leads
+            .map(lead => lead?.segmento)
+            .filter(Boolean)
+            .map(segmento => String(segmento).trim())
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    const cidades = [...new Set(
+        leads
+            .map(lead => lead?.cidade)
+            .filter(Boolean)
+            .map(cidade => String(cidade).trim())
+            .filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    const leadsFiltrados = leads.filter(lead => {
+
+    const cidadeOk =
+        !cidadeSelecionada ||
+        String(lead?.cidade || "").trim() === cidadeSelecionada;
+
+    const segmentoOk =
+        !segmentoSelecionado ||
+        String(lead?.segmento || "").trim() === segmentoSelecionado;
+
+    return cidadeOk && segmentoOk;
+});
+
     return (
 
 
@@ -360,7 +401,80 @@ function CRM(){
 
                 <p>
 
-                    Gestão dos leads capturados
+                    GestÃ£o dos leads capturados
+
+                <div className="crm-segmento-filtro">
+                    <label htmlFor="crm-visao">
+                        Visualizar por
+                    </label>
+
+                    <select
+                        id="crm-visao"
+                        value={visaoSelecionada}
+                        onChange={e => {
+                            const valor = e.target.value;
+                            setVisaoSelecionada(valor);
+                        }}
+                    >
+                        <option value="segmento">Segmento</option>
+                        <option value="cidade">Cidade</option>
+                    </select>
+
+                    <div className="crm-filtro-campo">
+
+    <label htmlFor="crm-cidade">
+        Cidade
+    </label>
+
+    <select
+        id="crm-cidade"
+        value={cidadeSelecionada}
+        onChange={e => setCidadeSelecionada(e.target.value)}
+    >
+        <option value="">Todas as cidades</option>
+
+        {cidades.map(cidade => (
+            <option key={cidade} value={cidade}>
+                {cidade}
+            </option>
+        ))}
+    </select>
+
+</div>
+
+<div className="crm-filtro-campo">
+
+    <label htmlFor="crm-segmento">
+        Segmento
+    </label>
+
+    <select
+        id="crm-segmento"
+        value={segmentoSelecionado}
+        onChange={e => setSegmentoSelecionado(e.target.value)}
+    >
+        <option value="">Todos os segmentos</option>
+
+        {segmentos.map(segmento => (
+            <option key={segmento} value={segmento}>
+                {segmento}
+            </option>
+        ))}
+    </select>
+
+</div>
+                        >
+                            <option value="">Todos os segmentos</option>
+
+                            {segmentos.map(segmento => (
+                                <option key={segmento} value={segmento}>
+                                    {segmento}
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </div>
+
 
                 </p>
 
@@ -411,7 +525,7 @@ function CRM(){
                         {
 
 
-                            leads.length === 0 ?
+                            leadsFiltrados.length === 0 ?
 
 
 
@@ -433,7 +547,7 @@ function CRM(){
 
 
 
-                            leads.map(
+                            leadsFiltrados.map(
 
                                 lead => (
 
@@ -592,3 +706,6 @@ function CRM(){
 
 
 export default CRM;
+
+
+

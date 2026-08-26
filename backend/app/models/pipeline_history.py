@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 
 from sqlalchemy import (
     Column,
@@ -66,12 +66,11 @@ class PipelineHistory(Base):
 
 
 
-    data = Column(
+    data_movimento = Column(DateTime, default=datetime.utcnow)
 
-        DateTime,
-
-        default=datetime.utcnow
-
+    usuario = Column(
+        String,
+        nullable=True
     )
 
 
