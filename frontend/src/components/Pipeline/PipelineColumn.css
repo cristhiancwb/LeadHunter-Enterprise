@@ -1,24 +1,17 @@
-.pipeline-board {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(260px, 1fr));
-    gap: 20px;
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-    align-items: start;
-}
+﻿/* ============================================================
+   LeadHunter Enterprise
+   PipelineColumn.css
 
-.pipeline-column {
-    min-width: 0;
-    min-height: 450px;
-    padding: 15px;
-    border-radius: 12px;
-    background: #f4f6f8;
-}
+   IMPORTANTE:
+   O layout principal do Pipeline pertence ao Pipeline.css.
+   Este arquivo contem SOMENTE estilos complementares
+   exclusivos das colunas.
+   ============================================================ */
 
-.pipeline-column.dragging-over {
-    opacity: 0.85;
-}
+
+/* ============================================================
+   CABECALHO DA COLUNA
+   ============================================================ */
 
 .pipeline-header {
     margin-bottom: 15px;
@@ -26,24 +19,48 @@
 
 .pipeline-header h3 {
     margin: 0 0 8px;
+    color: var(--text-primary);
     font-size: 18px;
+    font-weight: 700;
 }
+
+
+/* ============================================================
+   ESTATISTICAS DA COLUNA
+   ============================================================ */
 
 .pipeline-stats {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 10px;
-    color: #475569;
-    font-size: 13px;
+
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.4;
 }
+
+
+/* ============================================================
+   DROPZONE
+   ============================================================ */
 
 .pipeline-dropzone {
     min-height: 120px;
 }
 
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+
 @media (max-width: 768px) {
-    .pipeline-board {
-        grid-template-columns: repeat(6, minmax(240px, 1fr));
-        gap: 14px;
+
+    .pipeline-header {
+        margin-bottom: 12px;
     }
+
+    .pipeline-stats {
+        gap: 5px 8px;
+    }
+
 }

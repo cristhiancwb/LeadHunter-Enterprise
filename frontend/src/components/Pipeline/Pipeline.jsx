@@ -1,3 +1,4 @@
+﻿import './Pipeline.css';
 import {
     useEffect,
     useState
@@ -30,15 +31,16 @@ const STATUS = [
 
     "NOVO",
 
-    "CONTATO",
+    "EM_CONTATO",
 
     "QUALIFICADO",
 
-    "NEGOCIACAO",
+    "EM_NEGOCIACAO",
 
     "FECHADO",
 
-    "PERDIDO"
+    "PERDIDO",
+    "CONVERTIDO"
 
 ];
 
@@ -217,7 +219,7 @@ export default function Pipeline({
 
             setErro(
 
-                "Não foi possível carregar o Pipeline."
+                "NÃ£o foi possÃ­vel carregar o Pipeline."
 
             );
 
@@ -676,3 +678,7 @@ export default function Pipeline({
 
 
 }
+
+
+
+

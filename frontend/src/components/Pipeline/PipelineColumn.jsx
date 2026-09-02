@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 import {
     Droppable
@@ -30,15 +30,17 @@ export default function PipelineColumn({
 }) {
 
 
-    const nomeStatus =
+    const nomeStatus = status || title || column?.status || "SEM STATUS";
 
-        status ||
-
-        title ||
-
-        column?.status ||
-
-        "SEM STATUS";
+    const nomeStatusVisual = {
+        NOVO: "Novo",
+        EM_CONTATO: "Em Contato",
+        QUALIFICADO: "Qualificado",
+        EM_NEGOCIACAO: "Em Negociação",
+        FECHADO: "Fechado",
+        PERDIDO: "Perdido",
+        CONVERTIDO: "Convertido"
+    }[nomeStatus] || nomeStatus;
 
 
 
@@ -131,7 +133,7 @@ export default function PipelineColumn({
 
                 <h3>
 
-                    {nomeStatus}
+                    {nomeStatusVisual}
 
                 </h3>
 
@@ -307,3 +309,5 @@ export default function PipelineColumn({
 
 
 }
+
+

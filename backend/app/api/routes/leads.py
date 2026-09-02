@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+﻿from fastapi import APIRouter, Depends
 
 from sqlalchemy.orm import Session
 
@@ -59,7 +59,7 @@ def listar_leads(
 
             "prioridade": lead.prioridade or "BAIXA",
 
-            "valor_estimado": lead.valor_estimado or 0
+            "valor_estimado": getattr(lead, "valor_estimado", 0) or 0
 
 
         }
@@ -69,3 +69,23 @@ def listar_leads(
 
 
     ]
+@router.get("/{lead_id}")
+def buscar_lead(
+    lead_id: int,
+    db: Session = Depends(get_db)
+):
+    lead = (
+        db.query(Lead)
+        .filter(Lead.id == lead_id)
+        .first()
+    )
+
+    if not lead:
+        return {
+            "erro": "Lead nao encontrado",
+            "lead_id": lead_id
+        }
+
+    return lead
+
+

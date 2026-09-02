@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 
 from sqlalchemy import (
     Column,
@@ -15,113 +15,87 @@ from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
-
-
 class Followup(Base):
 
     __tablename__ = "followups"
 
-
-
     id = Column(
-
         Integer,
-
         primary_key=True,
-
         index=True
-
     )
-
-
 
     lead_id = Column(
-
         Integer,
-
         ForeignKey("leads.id"),
-
         nullable=False
-
     )
 
-
+    tipo = Column(
+        String(50),
+        nullable=False
+    )
 
     titulo = Column(
-
-        String(255),
-
+        String(150),
         nullable=False
-
     )
-
-
 
     descricao = Column(
-
         Text,
-
         nullable=True
-
     )
 
-
-
-    observacao = Column(
-
-        Text,
-
+    responsavel = Column(
+        String(100),
         nullable=True
-
     )
 
-
-
-    data_agendada = Column(
-
-        DateTime,
-
-        nullable=True
-
+    status = Column(
+        String(30),
+        nullable=False
     )
-
-
 
     concluido = Column(
-
         Boolean,
-
+        nullable=False,
         default=False
-
     )
 
-
-
-    data_criacao = Column(
-
+    data_agendada = Column(
         DateTime,
-
-        default=datetime.utcnow
-
+        nullable=True
     )
-
-
 
     data_conclusao = Column(
-
         DateTime,
-
         nullable=True
-
     )
 
+    criado_em = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow
+    )
 
+    atualizado_em = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
 
+    usuario = Column(
+        String,
+        nullable=True
+    )
+
+    observacao = Column(
+        Text,
+        nullable=True
+    )
 
     lead = relationship(
-
         "Lead",
-
         back_populates="followups"
-
     )

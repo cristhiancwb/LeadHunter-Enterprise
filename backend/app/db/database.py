@@ -1,8 +1,8 @@
-from sqlalchemy import create_engine
+﻿from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 
-DATABASE_URL = "sqlite:///./leadhunter.db"
+DATABASE_URL = "sqlite:///./leadhunter_clean.db"
 
 
 engine = create_engine(

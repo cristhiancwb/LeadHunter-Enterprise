@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+﻿from fastapi import APIRouter, Depends
 
 from sqlalchemy.orm import Session
 
@@ -9,13 +9,13 @@ from app.models.lead_status import LeadStatus
 
 
 router = APIRouter(
-    prefix="/api/leads",
+    prefix="",
     tags=["Pipeline"]
 )
 
 
 
-@router.get("/pipeline")
+@router.get("/")
 def listar_pipeline(
     db: Session = Depends(get_db)
 ):
@@ -31,43 +31,28 @@ def listar_pipeline(
 
 
 
-@router.put("/{empresa}/status")
-def atualizar_status(
-    empresa: str,
+
+@router.put("/status/{lead_id}")
+def atualizar_status_pipeline(
+    lead_id: int,
     dados: dict,
     db: Session = Depends(get_db)
 ):
-
-
     lead = db.query(
         LeadStatus
     ).filter(
-        LeadStatus.empresa == empresa
+        LeadStatus.id == lead_id
     ).first()
 
-
-
     if not lead:
+        return {
+            "erro": "Lead nao encontrado",
+            "lead_id": lead_id
+        }
 
-        lead = LeadStatus(
-            empresa=empresa
-        )
-
-        db.add(lead)
-
-
-
-    lead.status = dados.get(
-        "status",
-        "NOVO"
-    )
-
+    lead.status = dados.get("status", "NOVO")
 
     db.commit()
-
-    db.refresh(
-        lead
-    )
-
+    db.refresh(lead)
 
     return lead

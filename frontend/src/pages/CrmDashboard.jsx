@@ -1,4 +1,4 @@
-import {
+﻿import {
     useEffect,
     useState
 } from "react";
@@ -247,7 +247,7 @@ export default function CrmDashboard() {
 
                 <p>
 
-                    Gestão comercial de leads
+                    GestÃ£o comercial de leads
 
                 </p>
 
@@ -325,7 +325,7 @@ export default function CrmDashboard() {
                 <CommercialDashboard
 
 
-                    dados={estatisticas}
+                    estatisticas={estatisticas}
 
 
                     ranking={ranking}

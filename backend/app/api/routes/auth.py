@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+﻿from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.db.database import get_db
@@ -15,25 +15,22 @@ router = APIRouter(
 )
 
 
-
 @router.post("/login")
 def login(
-    email:str,
-    senha:str,
-    db:Session = Depends(get_db)
+    email: str = Query(...),
+    senha: str = Query(...),
+    db: Session = Depends(get_db)
 ):
 
     usuario = db.query(User).filter(
         User.email == email
     ).first()
 
-
     if not usuario:
         raise HTTPException(
             status_code=401,
-            detail="Usuário inválido"
+            detail="Usuario invalido"
         )
-
 
     if not verificar_senha(
         senha,
@@ -41,9 +38,8 @@ def login(
     ):
         raise HTTPException(
             status_code=401,
-            detail="Senha inválida"
+            detail="Senha invalida"
         )
-
 
     token = criar_token(
         {
@@ -51,7 +47,6 @@ def login(
             "user_id": usuario.id
         }
     )
-
 
     return {
         "access_token": token,

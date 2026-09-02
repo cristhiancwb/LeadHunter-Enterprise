@@ -85,3 +85,35 @@ def listar_pipeline(
 
 
     return resultado
+# =====================================
+# ATUALIZAR STATUS DO PIPELINE
+# =====================================
+
+@router.put("/status/{lead_id}")
+def atualizar_status_pipeline(
+    lead_id: int,
+    dados: dict,
+    db: Session = Depends(get_db)
+):
+
+    lead = (
+        db.query(Lead)
+        .filter(Lead.id == lead_id)
+        .first()
+    )
+
+    if not lead:
+        return {
+            "erro": "Lead nao encontrado",
+            "lead_id": lead_id
+        }
+
+    lead.status = (
+        dados.get("status")
+        or "NOVO"
+    )
+
+    db.commit()
+    db.refresh(lead)
+
+    return lead

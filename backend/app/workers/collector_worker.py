@@ -7,7 +7,7 @@ from app.services.job_service import atualizar_status
 def executar_google_maps(job):
 
 
-    job_id = job[0]
+    job_id = job.id
 
 
     try:
@@ -117,3 +117,4 @@ def executar_google_maps(job):
 
 
         return 0
+

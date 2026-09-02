@@ -1,4 +1,4 @@
-from urllib.parse import quote
+﻿from urllib.parse import quote
 import traceback
 
 
@@ -53,7 +53,8 @@ class GoogleMapsCollector:
                 "telefone": empresa.get("telefone"),
                 "cidade": cidade,
                 "segmento": keyword,
-                "observacao": empresa.get("site")
+                "observacao": empresa.get("site"),
+                "avaliacao": empresa.get("avaliacao")
             })
 
 
@@ -292,6 +293,26 @@ class GoogleMapsCollector:
 
 
 
+
+                    # ==================================================
+                    # FILTRO REAL DE CIDADE
+                    # ==================================================
+                    endereco = empresa.get("endereco") or ""
+
+                    cidade_normalizada = cidade.strip().lower()
+                    endereco_normalizado = endereco.strip().lower()
+
+                    if cidade_normalizada and cidade_normalizada not in endereco_normalizado:
+
+                        print(
+                            "Ignorado - cidade diferente:",
+                            nome,
+                            "| Endereco:",
+                            endereco
+                        )
+
+                        continue
+
                     nomes_coletados.add(
                         nome
                     )
@@ -303,7 +324,7 @@ class GoogleMapsCollector:
 
 
                     print(
-                        "✓ Coletado:",
+                        "Coletado:",
                         nome
                     )
 
@@ -352,3 +373,4 @@ class GoogleMapsCollector:
 
             browser.fechar()
             
+

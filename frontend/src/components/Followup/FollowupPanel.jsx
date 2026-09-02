@@ -1,4 +1,4 @@
-import {
+﻿import {
     useEffect,
     useState
 } from "react";
@@ -41,19 +41,7 @@ export default function FollowupPanel({
 
 
 
-            const dados = await buscarFollowups();
-
-
-
-            setFollowups(
-
-                Array.isArray(dados)
-
-                    ? dados
-
-                    : []
-
-            );
+            setFollowups([]);
 
 
 

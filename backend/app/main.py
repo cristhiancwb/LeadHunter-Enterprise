@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -23,7 +23,11 @@ from app.api.routes import (
     pipeline,
     followups,
     historico,
-    importer
+    importer,
+    campaigns,
+    campaign_messages,
+    campaign_products,
+    products,
 )
 
 
@@ -235,9 +239,7 @@ registrar_router(
 
 registrar_router(
 
-    leads,
-
-    "/leads"
+    leads
 
 )
 
@@ -299,7 +301,7 @@ registrar_router(
 
 
 
-# Histórico
+# HistÃ³rico
 
 registrar_router(
 
@@ -309,13 +311,41 @@ registrar_router(
 
 
 
-# Importação
+# ImportaÃ§Ã£o
 
 registrar_router(
 
-    importer
+    importer,
 
 )
+
+  # =====================================
+  # Campanhas
+  # =====================================
+
+registrar_router(
+    campaigns
+)
+
+
+  # =====================================
+  # Mensagens de Campanhas
+  # =====================================
+
+registrar_router(
+    campaign_messages
+)
+
+
+  # =====================================
+  # Produtos de Campanhas
+  # =====================================
+
+registrar_router(
+    products
+)
+
+
 
 
 
@@ -363,3 +393,14 @@ def health_check():
         "status": "ok"
 
     }
+
+
+
+
+
+
+# Campaign Products
+registrar_router(
+    campaign_products
+)
+
